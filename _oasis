@@ -1,0 +1,36 @@
+OASISFormat:  0.4
+OCamlVersion: >= 4.02.3
+Name:         mtail
+Version:      0.1
+Maintainers:  Markus Rudy
+Homepage:     https://github.com/burgerdev/mtail
+Synopsis:     Format input to columns according to regular expressions
+Authors:      markus@rudymentaer.de
+License:      GPL-3
+Plugins:      META (0.4), DevFiles (0.4)
+AlphaFeatures: ocamlbuild_more_args
+BuildTools: ocamlbuild
+
+Library "mtail"
+  Path: src
+  Modules: Mtail
+
+Executable "mtail"
+  Path: src
+  MainIs: main.ml
+  CompiledObject: native
+  BuildDepends: str, cmdliner
+
+Executable "test_mtail"
+  Path: test
+  MainIs: test_mtail.ml
+  Build$: flag(tests)
+  CompiledObject: best
+  Install: false
+  BuildDepends: str, mtail, ounit
+
+Test "test_mtail"
+  Run$: flag(tests)
+  TestTools: test_mtail
+  Command: $test_mtail
+  WorkingDirectory: test

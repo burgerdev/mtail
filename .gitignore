@@ -1,2 +1,12 @@
+# python
+
 *.pyc
 __pycache__
+
+# ocaml, oasis
+
+_build
+*.native
+Makefile
+configure
+setup.*
